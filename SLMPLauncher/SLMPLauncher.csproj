@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A847853-CE41-4BF6-A983-A610826D23A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SLMPLauncher</RootNamespace>
+    <AssemblyName>SLMPLauncher</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>опубликовать\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>SLMPLauncher.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FuncClear.cs" />
+    <Compile Include="FormENB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormENB.Designer.cs">
+      <DependentUpon>FormENB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuncFiles.cs" />
+    <Compile Include="FuncMisc.cs" />
+    <Compile Include="FuncParser.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMods.Designer.cs">
+      <DependentUpon>FormMods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptions.Designer.cs">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuncResolutions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="FormPrograms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrograms.Designer.cs">
+      <DependentUpon>FormPrograms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="FuncSettings.cs" />
+    <Compile Include="FormWidget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWidget.Designer.cs">
+      <DependentUpon>FormWidget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpdates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdates.Designer.cs">
+      <DependentUpon>FormUpdates.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormENB.resx">
+      <DependentUpon>FormENB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMods.resx">
+      <DependentUpon>FormMods.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptions.resx">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrograms.resx">
+      <DependentUpon>FormPrograms.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWidget.resx">
+      <DependentUpon>FormWidget.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdates.resx">
+      <DependentUpon>FormUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <None Include="Resources\1_MainForm.png" />
+    <None Include="Resources\2_buttonFull.png" />
+    <None Include="Resources\2_buttonOneGlow.png" />
+    <None Include="Resources\2_buttonOne.png" />
+    <None Include="Resources\2_buttonHalfPressed.png" />
+    <None Include="Resources\2_buttonHalfGlow.png" />
+    <None Include="Resources\2_buttonHalf.png" />
+    <None Include="Resources\2_buttonFullPressed.png" />
+    <None Include="Resources\2_buttonFullGlow.png" />
+    <None Include="Resources\1_buttonFull.png" />
+    <None Include="Resources\1_buttonClearGlow.png" />
+    <None Include="Resources\1_buttonClear.png" />
+    <None Include="Resources\1_buttonOneGlow.png" />
+    <None Include="Resources\1_buttonOne.png" />
+    <None Include="Resources\1_buttonlogoPressed.png" />
+    <None Include="Resources\1_buttonlogoGlow.png" />
+    <None Include="Resources\1_buttonlogo.png" />
+    <None Include="Resources\1_buttonHalfPressed.png" />
+    <None Include="Resources\1_buttonHalfGlow.png" />
+    <None Include="Resources\1_buttonHalf.png" />
+    <None Include="Resources\1_buttonFullPressed.png" />
+    <None Include="Resources\1_buttonFullGlow.png" />
+    <None Include="Resources\2_buttonlogoPressed.png" />
+    <None Include="Resources\2_buttonlogoGlow.png" />
+    <None Include="Resources\2_buttonlogo.png" />
+    <None Include="Resources\2_buttonClearGlow.png" />
+    <None Include="Resources\2_buttonClear.png" />
+    <None Include="Resources\2_MainForm.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
