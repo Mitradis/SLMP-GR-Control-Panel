@@ -17,8 +17,7 @@
         private System.Windows.Forms.Button button_TAA;
         private System.Windows.Forms.Button button_Uninstall;
         private System.Windows.Forms.ComboBox comboBox_AF;
-        private System.Windows.Forms.ComboBox comboBox_FPS;
-        private System.Windows.Forms.ComboBox comboBox_Memory;
+        private System.Windows.Forms.ComboBox comboBox_ReservedMemory;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
@@ -35,6 +34,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
 
@@ -64,8 +64,7 @@
             this.button_TAA = new System.Windows.Forms.Button();
             this.button_Uninstall = new System.Windows.Forms.Button();
             this.comboBox_AF = new System.Windows.Forms.ComboBox();
-            this.comboBox_FPS = new System.Windows.Forms.ComboBox();
-            this.comboBox_Memory = new System.Windows.Forms.ComboBox();
+            this.comboBox_ReservedMemory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -81,11 +80,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_AF
@@ -200,7 +201,7 @@
             this.button_EAA.Size = new System.Drawing.Size(50, 22);
             this.button_EAA.TabIndex = 6;
             this.button_EAA.UseVisualStyleBackColor = false;
-            this.button_EAA.Click += new System.EventHandler(this.button_AA_Click);
+            this.button_EAA.Click += new System.EventHandler(this.button_EAA_Click);
             // 
             // button_ExpandMemory
             // 
@@ -305,31 +306,12 @@
             this.comboBox_AF.TabIndex = 8;
             this.comboBox_AF.SelectedIndexChanged += new System.EventHandler(this.comboBox_AF_SelectedIndexChanged);
             // 
-            // comboBox_FPS
+            // comboBox_ReservedMemory
             // 
-            this.comboBox_FPS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_FPS.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_FPS.FormattingEnabled = true;
-            this.comboBox_FPS.Items.AddRange(new object[] {
-            "30",
-            "60",
-            "75",
-            "90",
-            "120",
-            "144",
-            "240"});
-            this.comboBox_FPS.Location = new System.Drawing.Point(123, 128);
-            this.comboBox_FPS.Name = "comboBox_FPS";
-            this.comboBox_FPS.Size = new System.Drawing.Size(50, 23);
-            this.comboBox_FPS.TabIndex = 10;
-            this.comboBox_FPS.SelectedIndexChanged += new System.EventHandler(this.comboBox_FPS_SelectedIndexChanged);
-            // 
-            // comboBox_Memory
-            // 
-            this.comboBox_Memory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Memory.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_Memory.FormattingEnabled = true;
-            this.comboBox_Memory.Items.AddRange(new object[] {
+            this.comboBox_ReservedMemory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReservedMemory.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_ReservedMemory.FormattingEnabled = true;
+            this.comboBox_ReservedMemory.Items.AddRange(new object[] {
             "64",
             "128",
             "256",
@@ -339,11 +321,11 @@
             "768",
             "896",
             "1024"});
-            this.comboBox_Memory.Location = new System.Drawing.Point(179, 152);
-            this.comboBox_Memory.Name = "comboBox_Memory";
-            this.comboBox_Memory.Size = new System.Drawing.Size(50, 23);
-            this.comboBox_Memory.TabIndex = 11;
-            this.comboBox_Memory.SelectedIndexChanged += new System.EventHandler(this.comboBox_Memory_SelectedIndexChanged);
+            this.comboBox_ReservedMemory.Location = new System.Drawing.Point(179, 152);
+            this.comboBox_ReservedMemory.Name = "comboBox_ReservedMemory";
+            this.comboBox_ReservedMemory.Size = new System.Drawing.Size(50, 23);
+            this.comboBox_ReservedMemory.TabIndex = 11;
+            this.comboBox_ReservedMemory.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReservedMemory_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -508,20 +490,20 @@
             this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 16;
             // 
-            // numericUpDown1
+            // numericUpDown2
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(155, 249);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            30720,
+            this.numericUpDown2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDown2.Location = new System.Drawing.Point(155, 249);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            32768,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(74, 21);
-            this.numericUpDown1.TabIndex = 15;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(74, 21);
+            this.numericUpDown2.TabIndex = 15;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // pictureBox1
             // 
@@ -531,6 +513,31 @@
             this.pictureBox1.Size = new System.Drawing.Size(1, 279);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDown1.Location = new System.Drawing.Point(123, 129);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 21);
+            this.numericUpDown1.TabIndex = 15;
+            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // FormENB
             // 
@@ -554,10 +561,10 @@
             this.Controls.Add(this.button_TAA);
             this.Controls.Add(this.button_Uninstall);
             this.Controls.Add(this.comboBox_AF);
-            this.Controls.Add(this.comboBox_FPS);
-            this.Controls.Add(this.comboBox_Memory);
+            this.Controls.Add(this.comboBox_ReservedMemory);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -581,8 +588,9 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }

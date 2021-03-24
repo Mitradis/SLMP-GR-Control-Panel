@@ -60,7 +60,7 @@ namespace SLMPLauncher
             toolTip1.SetToolTip(trackBar_GrassDensityTAB, textGrassDensity);
             toolTip1.SetToolTip(button_RedateMods, textRedateMods);
             toolTip1.SetToolTip(label3, textMaxFPS);
-            toolTip1.SetToolTip(comboBox_MaxFPS, textMaxFPS);
+            toolTip1.SetToolTip(numericUpDown1, textMaxFPS);
             toolTip1.SetToolTip(label4, textZFighting);
             toolTip1.SetToolTip(button_ZFighting, textZFighting);
             toolTip1.SetToolTip(comboBox_ZFighting, textNearDistance);
@@ -725,14 +725,14 @@ namespace SLMPLauncher
             FuncMisc.refreshComboBox(comboBox_LODObjectsTAB, new List<double>() { 12500, 25000, 40000, 75000 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "TerrainManager", "fTreeLoadDistance"), false, comboBox_LODObjectsTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void comboBox_MaxFPS_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            FormMain.maxFPS = FuncParser.stringToInt(comboBox_MaxFPS.SelectedItem.ToString());
+            FormMain.maxFPS = numericUpDown1.Value;
             FuncSettings.physicsFPS();
         }
         private void refreshMaxFPS()
         {
-            FuncMisc.refreshComboBox(comboBox_MaxFPS, new List<double>() { 0.0333, 0.0166, 0.0133, 0.0111, 0.0083, 0.0069, 0.0041 }, FuncParser.doubleRead(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime"), false, comboBox_MaxFPS_SelectedIndexChanged);
+            numericUpDown1.Value = FormMain.maxFPS;
             FuncSettings.physicsFPS();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //

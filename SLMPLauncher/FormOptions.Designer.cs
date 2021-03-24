@@ -30,7 +30,6 @@
         private System.Windows.Forms.ComboBox comboBox_AFTAB;
         private System.Windows.Forms.ComboBox comboBox_DecalsTAB;
         private System.Windows.Forms.ComboBox comboBox_LODObjectsTAB;
-        private System.Windows.Forms.ComboBox comboBox_MaxFPS;
         private System.Windows.Forms.ComboBox comboBox_ResolutionTAB;
         private System.Windows.Forms.ComboBox comboBox_ScreenTAB;
         private System.Windows.Forms.ComboBox comboBox_ShadowTAB;
@@ -79,6 +78,7 @@
         private System.Windows.Forms.Label label9TAB;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -134,7 +134,6 @@
             this.comboBox_AFTAB = new System.Windows.Forms.ComboBox();
             this.comboBox_DecalsTAB = new System.Windows.Forms.ComboBox();
             this.comboBox_LODObjectsTAB = new System.Windows.Forms.ComboBox();
-            this.comboBox_MaxFPS = new System.Windows.Forms.ComboBox();
             this.comboBox_ResolutionTAB = new System.Windows.Forms.ComboBox();
             this.comboBox_ScreenTAB = new System.Windows.Forms.ComboBox();
             this.comboBox_ShadowTAB = new System.Windows.Forms.ComboBox();
@@ -202,6 +201,7 @@
             this.trackBar_LightsTAB = new System.Windows.Forms.TrackBar();
             this.trackBar_ObjectsTAB = new System.Windows.Forms.TrackBar();
             this.trackBar_ShadowTAB = new System.Windows.Forms.TrackBar();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -216,6 +216,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_LightsTAB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_ObjectsTAB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_ShadowTAB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_ActivatedAll
@@ -501,7 +502,7 @@
             this.button_ZFighting.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ZFighting.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ZFighting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ZFighting.Location = new System.Drawing.Point(32, 538);
+            this.button_ZFighting.Location = new System.Drawing.Point(32, 536);
             this.button_ZFighting.Name = "button_ZFighting";
             this.button_ZFighting.Size = new System.Drawing.Size(50, 22);
             this.button_ZFighting.TabIndex = 33;
@@ -573,25 +574,6 @@
             this.comboBox_LODObjectsTAB.TabIndex = 27;
             this.comboBox_LODObjectsTAB.Visible = false;
             this.comboBox_LODObjectsTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_LODObjectsTAB_SelectedIndexChanged);
-            // 
-            // comboBox_MaxFPS
-            // 
-            this.comboBox_MaxFPS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_MaxFPS.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_MaxFPS.FormattingEnabled = true;
-            this.comboBox_MaxFPS.Items.AddRange(new object[] {
-            "30",
-            "60",
-            "75",
-            "90",
-            "120",
-            "144",
-            "240"});
-            this.comboBox_MaxFPS.Location = new System.Drawing.Point(66, 487);
-            this.comboBox_MaxFPS.Name = "comboBox_MaxFPS";
-            this.comboBox_MaxFPS.Size = new System.Drawing.Size(50, 23);
-            this.comboBox_MaxFPS.TabIndex = 32;
-            this.comboBox_MaxFPS.SelectedIndexChanged += new System.EventHandler(this.comboBox_MaxFPS_SelectedIndexChanged);
             // 
             // comboBox_ResolutionTAB
             // 
@@ -680,7 +662,7 @@
             "23",
             "24",
             "25"});
-            this.comboBox_ZFighting.Location = new System.Drawing.Point(100, 538);
+            this.comboBox_ZFighting.Location = new System.Drawing.Point(100, 536);
             this.comboBox_ZFighting.Name = "comboBox_ZFighting";
             this.comboBox_ZFighting.Size = new System.Drawing.Size(50, 23);
             this.comboBox_ZFighting.TabIndex = 34;
@@ -943,7 +925,7 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 466);
+            this.label3.Location = new System.Drawing.Point(3, 464);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(176, 18);
             this.label3.TabIndex = 0;
@@ -1074,7 +1056,7 @@
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(3, 517);
+            this.label4.Location = new System.Drawing.Point(3, 515);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(176, 18);
             this.label4.TabIndex = 0;
@@ -1357,6 +1339,31 @@
             this.trackBar_ShadowTAB.Visible = false;
             this.trackBar_ShadowTAB.Scroll += new System.EventHandler(this.trackBar_ShadowTAB_Scroll);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDown1.Location = new System.Drawing.Point(66, 486);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 21);
+            this.numericUpDown1.TabIndex = 42;
+            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1365,6 +1372,7 @@
             this.CancelButton = this.button_Close;
             this.ClientSize = new System.Drawing.Size(658, 653);
             this.ControlBox = false;
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button_HideObjectsTAB);
             this.Controls.Add(this.comboBox_LODObjectsTAB);
             this.Controls.Add(this.trackBar_LightsTAB);
@@ -1450,7 +1458,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_ZFighting);
-            this.Controls.Add(this.comboBox_MaxFPS);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
@@ -1475,6 +1482,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_LightsTAB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_ObjectsTAB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_ShadowTAB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

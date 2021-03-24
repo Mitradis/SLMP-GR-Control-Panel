@@ -74,43 +74,29 @@ namespace SLMPLauncher
             {
                 combobox.SelectedIndexChanged -= onchange;
             }
-            int count = list.Count;
-            for (int i = 0; i < count; i++)
+            if (value != -1)
             {
-                if (value == list[i] || (notEqual && value < list[i]))
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
                 {
-                    combobox.SelectedIndex = i;
-                    break;
+                    if (value == list[i] || (notEqual && value < list[i]))
+                    {
+                        combobox.SelectedIndex = i;
+                        break;
+                    }
+                    else if (i == count - 1)
+                    {
+                        combobox.SelectedIndex = -1;
+                    }
                 }
-                else if (i == list.Count - 1)
-                {
-                    combobox.SelectedIndex = -1;
-                }
+            }
+            else
+            {
+                combobox.SelectedIndex = -1;
             }
             if (onchange != null)
             {
                 combobox.SelectedIndexChanged += onchange;
-            }
-        }
-        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        public static void refreshNumericUpDown(NumericUpDown numeric, string file, string section, string key, EventHandler onchange)
-        {
-            int value = FuncParser.intRead(file, section, key);
-            if (onchange != null)
-            {
-                numeric.ValueChanged -= onchange;
-            }
-            if (value >= numeric.Minimum && value <= numeric.Maximum)
-            {
-                numeric.Value = value;
-            }
-            else
-            {
-                numeric.Value = numeric.Minimum;
-            }
-            if (onchange != null)
-            {
-                numeric.ValueChanged += onchange;
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //

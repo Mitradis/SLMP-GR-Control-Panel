@@ -16,6 +16,8 @@ namespace SLMPLauncher
                 "atimgpud.dll",
                 "binkw32.dll",
                 "d3d9.dll",
+                "d3d9.ini",
+                "d3d9limiter.dll",
                 "data",
                 "data|GameText10.bsa",
                 "data|additemmenu2.bsa",
@@ -402,7 +404,7 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static void removeENB()
         {
-            foreach (string line in new string[] { "d3d9.dll", "enbhost.exe", "enbinjector.exe", "enbinjector.ini", "enblocal.ini", "enbseries.dll", "enbseries", "enbseries.ini" })
+            foreach (string line in new string[] { "d3d9.dll", "d3d9.ini", "d3d9limiter.dll", "enbhost.exe", "enbinjector.exe", "enbinjector.ini", "enblocal.ini", "enbseries.dll", "enbseries", "enbseries.ini" })
             {
                 FuncFiles.deleteAny(FormMain.pathGameFolder + line);
             }

@@ -183,10 +183,14 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static void physicsFPS()
         {
-            FuncParser.iniWrite(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime", (((double)1 / FormMain.maxFPS).ToString() + "000000").Replace(",", ".").Remove(6));
-            if (File.Exists(FormMain.pathENBLocalINI))
+            FuncParser.iniWrite(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime", ((1 / FormMain.maxFPS).ToString() + "000000").Replace(",", ".").Remove(6));
+            if (FormMain.setupENB == 2 && File.Exists(FormMain.pathENBLocalINI))
             {
                 FuncParser.iniWrite(FormMain.pathENBLocalINI, "LIMITER", "FPSLimit", FormMain.maxFPS.ToString() + ".0");
+            }
+            else if (FormMain.setupENB == 1 && File.Exists(FormMain.pathGameFolder + "d3d9.ini"))
+            {
+                FuncParser.iniWrite(FormMain.pathGameFolder + "d3d9.ini", "MAIN", "FPSLimit", FormMain.maxFPS.ToString());
             }
         }
         public static void restoreENBAdapter()

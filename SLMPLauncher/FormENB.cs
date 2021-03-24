@@ -40,7 +40,7 @@ namespace SLMPLauncher
                 langTranslateEN();
             }
             toolTip1.SetToolTip(label9, textReservedMemory);
-            toolTip1.SetToolTip(comboBox_Memory, textReservedMemory);
+            toolTip1.SetToolTip(comboBox_ReservedMemory, textReservedMemory);
             toolTip1.SetToolTip(label11, textCompression);
             toolTip1.SetToolTip(button_Compress, textCompression);
             toolTip1.SetToolTip(label10, textExpandMemory);
@@ -118,33 +118,27 @@ namespace SLMPLauncher
             FuncSettings.restoreENBAdapter();
             FuncSettings.restoreENBBorderless();
             FuncSettings.restoreENBVSync();
-            refreshAutoDetect();
-            refreshCompressMemory();
-            refreshMemory();
+            refreshFPS();
+            refreshAF();
+            refreshReservedMemory();
             refreshExpandMemory();
+            refreshCompressMemory();
+            refreshAutoDetect();
             if (FormMain.setupENB == 2)
             {
-                refreshAO();
                 refreshDOF();
-                refreshEAA();
+                refreshAO();
                 refreshSAA();
                 refreshTAA();
-                refreshAF();
-                refreshFPS();
+                refreshEAA();
             }
             else
             {
-                FuncMisc.refreshButton(button_AO, "", "", "", null, false);
                 FuncMisc.refreshButton(button_DOF, "", "", "", null, false);
-                FuncMisc.refreshButton(button_EAA, "", "", "", null, false);
+                FuncMisc.refreshButton(button_AO, "", "", "", null, false);
                 FuncMisc.refreshButton(button_SAA, "", "", "", null, false);
                 FuncMisc.refreshButton(button_TAA, "", "", "", null, false);
-                FuncMisc.refreshButton(button_AF, "", "", "", null, false);
-                FuncMisc.refreshButton(button_FPS, "", "", "", null, false);
-                FuncMisc.refreshComboBox(comboBox_AF, new List<double>() { 0 }, 1, false, comboBox_AF_SelectedIndexChanged);
-                comboBox_AF.Enabled = false;
-                FuncMisc.refreshComboBox(comboBox_FPS, new List<double>() { 0 }, 1, false, comboBox_FPS_SelectedIndexChanged);
-                comboBox_FPS.Enabled = false;
+                FuncMisc.refreshButton(button_EAA, "", "", "", null, false);
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -197,16 +191,6 @@ namespace SLMPLauncher
             ao = FuncMisc.refreshButton(button_AO, FormMain.pathENBSeriesINI, "EFFECT", "EnableAmbientOcclusion", null, false);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void button_AA_Click(object sender, EventArgs e)
-        {
-            FuncParser.iniWrite(FormMain.pathENBLocalINI, "ANTIALIASING", "EnableEdgeAA", (!eaa).ToString().ToLower());
-            refreshEAA();
-        }
-        private void refreshEAA()
-        {
-            eaa = FuncMisc.refreshButton(button_EAA, FormMain.pathENBLocalINI, "ANTIALIASING", "EnableEdgeAA", null, false);
-        }
-        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_SAA_Click(object sender, EventArgs e)
         {
             FuncParser.iniWrite(FormMain.pathENBLocalINI, "ANTIALIASING", "EnableSubPixelAA", (!saa).ToString().ToLower());
@@ -225,6 +209,16 @@ namespace SLMPLauncher
         private void refreshTAA()
         {
             taa = FuncMisc.refreshButton(button_TAA, FormMain.pathENBLocalINI, "ANTIALIASING", "EnableTemporalAA", null, false);
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void button_EAA_Click(object sender, EventArgs e)
+        {
+            FuncParser.iniWrite(FormMain.pathENBLocalINI, "ANTIALIASING", "EnableEdgeAA", (!eaa).ToString().ToLower());
+            refreshEAA();
+        }
+        private void refreshEAA()
+        {
+            eaa = FuncMisc.refreshButton(button_EAA, FormMain.pathENBLocalINI, "ANTIALIASING", "EnableEdgeAA", null, false);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_AF_Click(object sender, EventArgs e)
@@ -259,47 +253,36 @@ namespace SLMPLauncher
             FuncParser.iniWrite(FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", (!fps).ToString().ToLower());
             refreshFPS();
         }
-        private void comboBox_FPS_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (fps)
             {
-                FormMain.maxFPS = FuncParser.stringToInt(comboBox_FPS.SelectedItem.ToString());
+                FormMain.maxFPS = numericUpDown1.Value;
                 FuncSettings.physicsFPS();
             }
         }
         private void refreshFPS()
         {
-            fps = FuncMisc.refreshButton(button_FPS, FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", null, false);
-            if (fps)
+            fps = (FormMain.setupENB == 2 && FuncMisc.refreshButton(button_FPS, FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", null, false)) || (FormMain.setupENB == 1 && File.Exists(FormMain.pathGameFolder + "d3d9.ini"));
+            if (FormMain.setupENB == 1)
             {
-                FuncMisc.refreshComboBox(comboBox_FPS, new List<double>() { 30, 60, 75, 90, 120, 144, 240 }, FuncParser.intRead(FormMain.pathENBLocalINI, "LIMITER", "FPSLimit"), false, comboBox_FPS_SelectedIndexChanged);
+                FuncMisc.refreshButton(button_FPS, "", "", "", null, false);
             }
-            else
-            {
-                comboBox_FPS.SelectedIndex = -1;
-            }
-            comboBox_FPS.Enabled = fps;
+            numericUpDown1.Value = FormMain.maxFPS;
+            numericUpDown1.Enabled = fps;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void comboBox_Memory_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_ReservedMemory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (File.Exists(FormMain.pathENBLocalINI))
             {
-                FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb", comboBox_Memory.SelectedItem.ToString());
+                FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb", comboBox_ReservedMemory.SelectedItem.ToString());
             }
         }
-        private void refreshMemory()
+        private void refreshReservedMemory()
         {
-            if (File.Exists(FormMain.pathENBLocalINI))
-            {
-                comboBox_Memory.Enabled = true;
-                FuncMisc.refreshComboBox(comboBox_Memory, new List<double>() { 64, 128, 256, 384, 512, 640, 768, 896, 1024 }, FuncParser.intRead(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb"), false, comboBox_Memory_SelectedIndexChanged);
-            }
-            else
-            {
-                comboBox_Memory.SelectedIndex = -1;
-                comboBox_Memory.Enabled = false;
-            }
+            comboBox_ReservedMemory.Enabled = File.Exists(FormMain.pathENBLocalINI);
+            FuncMisc.refreshComboBox(comboBox_ReservedMemory, new List<double>() { 64, 128, 256, 384, 512, 640, 768, 896, 1024 }, FuncParser.intRead(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb"), false, comboBox_ReservedMemory_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_ExpandMemory_Click(object sender, EventArgs e)
@@ -327,20 +310,17 @@ namespace SLMPLauncher
             FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "AutodetectVideoMemorySize", (!autovram).ToString().ToLower());
             refreshAutoDetect();
         }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            FuncParser.iniWrite(FormMain.pathLauncherINI, "ENB", "MemorySizeMb", numericUpDown1.Value.ToString());
-            FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "VideoMemorySizeMb", numericUpDown1.Value.ToString());
+            FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "VideoMemorySizeMb", numericUpDown2.Value.ToString());
+            FormMain.memorySizeENB = numericUpDown2.Value;
         }
         private void refreshAutoDetect()
         {
             autovram = FuncMisc.refreshButton(button_AutoMemory, FormMain.pathENBLocalINI, "MEMORY", "AutodetectVideoMemorySize", null, false);
-            if (!autovram)
-            {
-                FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "VideoMemorySizeMb", FuncParser.stringRead(FormMain.pathLauncherINI, "ENB", "MemorySizeMb"));
-            }
-            FuncMisc.refreshNumericUpDown(numericUpDown1, FormMain.pathENBLocalINI, "MEMORY", "VideoMemorySizeMb", numericUpDown1_ValueChanged);
-            numericUpDown1.Enabled = !autovram && button_AutoMemory.Enabled;
+            FuncParser.iniWrite(FormMain.pathENBLocalINI, "MEMORY", "VideoMemorySizeMb", FormMain.memorySizeENB.ToString());
+            numericUpDown2.Enabled = !autovram && button_AutoMemory.Enabled;
+            numericUpDown2.Value = FormMain.memorySizeENB;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_Close_MouseEnter(object sender, EventArgs e)

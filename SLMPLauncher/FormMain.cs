@@ -43,8 +43,9 @@ namespace SLMPLauncher
         public static string textFailedCopy = null;
         public static string textFailedCreate = null;
         public static string textNotFound = null;
+        public static decimal maxFPS = 60;
+        public static decimal memorySizeENB = 2048;
         public static int gameDirLength = pathGameFolder.Length;
-        public static int maxFPS = 60;
         public static int numberStyle = 1;
         public static int settingsPreset = 2;
         public static int setupENB = 0;
@@ -161,9 +162,14 @@ namespace SLMPLauncher
                     setLangTranslateRU();
                 }
                 maxFPS = FuncParser.intRead(pathLauncherINI, "Game", "MaxFPS");
-                if (maxFPS < 30 || maxFPS > 240)
+                if (maxFPS < 30 || maxFPS > 360)
                 {
                     maxFPS = 60;
+                }
+                memorySizeENB = FuncParser.intRead(pathLauncherINI, "ENB", "MemorySizeMb");
+                if (memorySizeENB < 0 || memorySizeENB > 32768)
+                {
+                    memorySizeENB = 2048;
                 }
                 if (!FuncParser.keyExists(pathLauncherINI, "Game", "ZFighting"))
                 {
@@ -284,6 +290,7 @@ namespace SLMPLauncher
                 FuncParser.iniWrite(pathLauncherINI, "General", "NumberStyle", numberStyle.ToString());
                 FuncParser.iniWrite(pathLauncherINI, "General", "Language", langTranslate);
                 FuncParser.iniWrite(pathLauncherINI, "Game", "MaxFPS", maxFPS.ToString());
+                FuncParser.iniWrite(pathLauncherINI, "ENB", "MemorySizeMb", memorySizeENB.ToString());
                 if (Top >= 0 && Left >= 0)
                 {
                     FuncParser.iniWrite(pathLauncherINI, "General", "POS_WindowTop", Top.ToString());
