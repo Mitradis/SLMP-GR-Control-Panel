@@ -74,7 +74,8 @@ namespace SLMPLauncher
             {
                 combobox.SelectedIndexChanged -= onchange;
             }
-            for (int i = 0; i < list.Count; i++)
+            int count = list.Count;
+            for (int i = 0; i < count; i++)
             {
                 if (value == list[i] || (notEqual && value < list[i]))
                 {
@@ -198,7 +199,8 @@ namespace SLMPLauncher
             double[] arList = new double[] { 1.3, 1.4, 1.7, 1.8, 2.5 };
             double arRes = (double)width / height;
             int arOld = FuncParser.intRead(FormMain.pathLauncherINI, "General", "AspectRatio");
-            for (int i = 0; i < arList.Length; i++)
+            int count = arList.Length;
+            for (int i = 0; i < count; i++)
             {
                 if (arRes <= arList[i] || (i == 4 && arRes > 2.5))
                 {
@@ -227,7 +229,8 @@ namespace SLMPLauncher
                     if (archives != null)
                     {
                         List<string> list = new List<string>(archives.Split(new string[] { "," }, StringSplitOptions.None));
-                        for (int i = 0; i < list.Count; i++)
+                        int count = list.Count;
+                        for (int i = 0; i < count; i++)
                         {
                             list[i] = list[i].Trim();
                         }

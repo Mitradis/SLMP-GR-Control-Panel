@@ -87,7 +87,7 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_Updates_Click(object sender, EventArgs e)
         {
-            var form = new FormUpdates();
+            Form form = new FormUpdates();
             if (form.ShowDialog(Owner) == DialogResult.OK)
             {
                 form.Dispose();

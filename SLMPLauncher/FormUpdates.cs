@@ -270,10 +270,10 @@ namespace SLMPLauncher
                 {
                     if (downloadFileType == "CheckU")
                     {
-                        int CountComboBox = FuncParser.intRead(pathUpdateFolder + nameUpdateInfo, "General", "numbers_files_update");
-                        if (CountComboBox > 0)
+                        int count1 = FuncParser.intRead(pathUpdateFolder + nameUpdateInfo, "General", "numbers_files_update");
+                        if (count1 > 0)
                         {
-                            for (int i = 1; i <= CountComboBox; i++)
+                            for (int i = 1; i <= count1; i++)
                             {
                                 comboBox_Updates.SelectedIndexChanged -= comboBox_Updates_SelectedIndexChanged;
                                 if (checkUpdateVersion(i))
@@ -288,7 +288,8 @@ namespace SLMPLauncher
                                 }
                                 comboBox_Updates.SelectedIndexChanged += comboBox_Updates_SelectedIndexChanged;
                             }
-                            for (int i = 0; i < realIndexI.Count; i++)
+                            int count2 = realIndexI.Count;
+                            for (int i = 0; i < count2; i++)
                             {
                                 realIndex.Add(realIndexI[i]);
                                 comboBox_Updates.Items.Add(installPreLoad[i]);
@@ -298,7 +299,7 @@ namespace SLMPLauncher
                                 comboBox_Updates.SelectedIndex = 0;
                             }
                             updatesFound = true;
-                            label4.Text = CountComboBox.ToString();
+                            label4.Text = count1.ToString();
                         }
                         else
                         {
@@ -308,7 +309,7 @@ namespace SLMPLauncher
                         string line = FuncParser.stringRead(pathUpdateFolder + nameUpdateInfo, "General", "version_control_panel");
                         if (line != null)
                         {
-                            var result = new Version(FormMain.panelFileVersion).CompareTo(new Version(line));
+                            int result = new Version(FormMain.panelFileVersion).CompareTo(new Version(line));
                             updatesCPFound = result < 0;
                         }
                     }

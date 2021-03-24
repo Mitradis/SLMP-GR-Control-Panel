@@ -43,11 +43,11 @@ namespace SLMPLauncher
         public static string textFailedCopy = null;
         public static string textFailedCreate = null;
         public static string textNotFound = null;
-        public static int argsWaitBefore = 0;
         public static int gameDirLength = pathGameFolder.Length;
         public static int maxFPS = 60;
         public static int numberStyle = 1;
         public static int settingsPreset = 2;
+        public static int setupENB = 0;
         public static int updatesExtension = 1;
         internal static FormMain formMain = null;
         public static FontStyle customFontStyle = FontStyle.Regular;
@@ -67,6 +67,7 @@ namespace SLMPLauncher
         string textSettingsReset = null;
         string textUseStandart = null;
         string[] typeSettings = null;
+        int argsWaitBefore = 0;
         int mouseWindowX = 0;
         int mouseWindowY = 0;
         const int CS_DBLCLKS = 0x8;
@@ -176,8 +177,9 @@ namespace SLMPLauncher
                 customFont = FuncParser.stringRead(pathLauncherINI, "Font", "CP_Font");
                 if (customFont != null)
                 {
-                    var ifc = new InstalledFontCollection();
-                    for (int i = ifc.Families.Length - 1; i >= 0; i--)
+                    InstalledFontCollection ifc = new InstalledFontCollection();
+                    int count = ifc.Families.Length;
+                    for (int i = 0; i < count; i++)
                     {
                         if (ifc.Families[i].Name == customFont)
                         {

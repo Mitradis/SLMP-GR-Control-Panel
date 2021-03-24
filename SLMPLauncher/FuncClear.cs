@@ -278,7 +278,10 @@ namespace SLMPLauncher
                 "data|wondersofweather.bsa",
                 "data|wondersofweather.esp",
                 "enbhost.exe",
+                "enbinjector.exe",
+                "enbinjector.ini",
                 "enblocal.ini",
+                "enbseries.dll",
                 "enbseries",
                 "enbseries.ini",
                 "logs",
@@ -361,7 +364,8 @@ namespace SLMPLauncher
         }
         private static void changeSeparator(List<string> list, string line)
         {
-            for (int i = 0; i < list.Count; i++)
+            int count = list.Count;
+            for (int i = 0; i < count; i++)
             {
                 list[i] = list[i].Replace("|", line);
             }
@@ -398,7 +402,7 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static void removeENB()
         {
-            foreach (string line in new string[] { "enbseries", "d3d9.dll", "enbhost.exe", "enblocal.ini", "enbseries.ini", "enbinjector.exe", "enbinjector.ini" })
+            foreach (string line in new string[] { "d3d9.dll", "enbhost.exe", "enbinjector.exe", "enbinjector.ini", "enblocal.ini", "enbseries.dll", "enbseries", "enbseries.ini" })
             {
                 FuncFiles.deleteAny(FormMain.pathGameFolder + line);
             }

@@ -212,24 +212,28 @@ namespace SLMPLauncher
                 FuncParser.iniWrite(FormMain.pathENBLocalINI, "ENGINE", "EnableVSync", (FuncParser.stringRead(FormMain.pathSkyrimINI, "Display", "iPresentInterval") == "1").ToString().ToLower());
             }
         }
-        public static bool checkENB()
+        public static void checkENB()
         {
-            bool result = false;
             if ((File.Exists(FormMain.pathGameFolder + "d3d9.dll") || File.Exists(FormMain.pathGameFolder + "enbseries.dll")) && File.Exists(FormMain.pathENBLocalINI))
             {
                 if (!FuncParser.readAsBool(FormMain.pathENBLocalINI, "GLOBAL", "UsePatchSpeedhackWithoutGraphics"))
                 {
-                    result = true;
+                    FormMain.setupENB = 2;
                     FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "iMultiSample", "0");
                     FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "bFloatPointRenderTarget", "1");
+                }
+                else
+                {
+                    FormMain.setupENB = 1;
                 }
                 FuncParser.iniWrite(FormMain.pathSkyrimINI, "Display", "bAllowScreenshot", "0");
             }
             else
             {
+                FormMain.setupENB = 0;
                 FuncParser.iniWrite(FormMain.pathSkyrimINI, "Display", "bAllowScreenshot", "1");
             }
-            if (!result)
+            if (FormMain.setupENB < 2)
             {
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "bFloatPointRenderTarget", "0");
                 FuncMisc.resourceArchives("GameText10.bsa", false);
@@ -243,7 +247,6 @@ namespace SLMPLauncher
                 FuncMisc.resourceArchives("GameText10.bsa", true);
                 FuncFiles.deleteAny(FormMain.pathDataFolder + "GameText10.bsa");
             }
-            return result;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static List<string> skyrimINI()

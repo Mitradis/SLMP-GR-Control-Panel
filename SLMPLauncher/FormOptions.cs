@@ -169,14 +169,9 @@ namespace SLMPLauncher
             refreshWindow();
             refreshZFighting();
             refreshZFightingCB();
-            if (!FuncSettings.checkENB())
-            {
-                refreshAA();
-            }
-            else
-            {
-                comboBox_AATAB.Enabled = false;
-            }
+            FuncSettings.checkENB();
+            refreshAA();
+            comboBox_AATAB.Enabled = FormMain.setupENB < 2;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void listView1_MouseDown(object sender, MouseEventArgs e)
@@ -320,7 +315,8 @@ namespace SLMPLauncher
         }
         private void uncheckItem(string item)
         {
-            for (int i = 0; i < listView1.Items.Count; i++)
+            int count = listView1.Items.Count;
+            for (int i = 0; i < count; i++)
             {
                 foreach (string line in FuncParser.parserESPESM(FormMain.pathDataFolder + listView1.Items[i].Text))
                 {
@@ -344,7 +340,8 @@ namespace SLMPLauncher
         private void setFileID()
         {
             int fileID = 0;
-            for (int i = 0; i < listView1.Items.Count; i++)
+            int count = listView1.Items.Count;
+            for (int i = 0; i < count; i++)
             {
                 if (listView1.Items[i].Checked)
                 {
@@ -369,7 +366,8 @@ namespace SLMPLauncher
                 List<string> loaderList = new List<string>(File.ReadAllLines(pathToLoader));
                 List<string> mergedLists = new List<string>(pluginsList);
                 List<string> dataESFiles = new List<string>();
-                for (int i = 0; i < loaderList.Count; i++)
+                int count = loaderList.Count;
+                for (int i = 0; i < count; i++)
                 {
                     if (!mergedLists.Exists(s => s.Equals(loaderList[i], StringComparison.OrdinalIgnoreCase)))
                     {
@@ -570,7 +568,8 @@ namespace SLMPLauncher
             FuncResolutions.Resolutions(selectedScreen);
             if (screenListW.Count == screenListH.Count && screenListW.Count > 0)
             {
-                for (int i = 0; i < screenListW.Count; i++)
+                int count = screenListW.Count;
+                for (int i = 0; i < count; i++)
                 {
                     comboBox_ResolutionTAB.Items.Add(screenListW[i].ToString() + " x " + screenListH[i].ToString());
                 }
@@ -600,7 +599,8 @@ namespace SLMPLauncher
             comboBox_ScreenTAB.Items.Clear();
             if (screens.Length > 0)
             {
-                for (int i = 0; i < screens.Length; i++)
+                int count = screens.Length;
+                for (int i = 0; i < count; i++)
                 {
                     comboBox_ScreenTAB.Items.Add(i.ToString());
                 }

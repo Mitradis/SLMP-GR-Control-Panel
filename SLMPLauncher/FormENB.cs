@@ -118,17 +118,34 @@ namespace SLMPLauncher
             FuncSettings.restoreENBAdapter();
             FuncSettings.restoreENBBorderless();
             FuncSettings.restoreENBVSync();
-            refreshAO();
-            refreshDOF();
-            refreshEAA();
-            refreshSAA();
-            refreshTAA();
-            refreshAF();
             refreshAutoDetect();
             refreshCompressMemory();
-            refreshFPS();
             refreshMemory();
             refreshExpandMemory();
+            if (FormMain.setupENB == 2)
+            {
+                refreshAO();
+                refreshDOF();
+                refreshEAA();
+                refreshSAA();
+                refreshTAA();
+                refreshAF();
+                refreshFPS();
+            }
+            else
+            {
+                FuncMisc.refreshButton(button_AO, "", "", "", null, false);
+                FuncMisc.refreshButton(button_DOF, "", "", "", null, false);
+                FuncMisc.refreshButton(button_EAA, "", "", "", null, false);
+                FuncMisc.refreshButton(button_SAA, "", "", "", null, false);
+                FuncMisc.refreshButton(button_TAA, "", "", "", null, false);
+                FuncMisc.refreshButton(button_AF, "", "", "", null, false);
+                FuncMisc.refreshButton(button_FPS, "", "", "", null, false);
+                FuncMisc.refreshComboBox(comboBox_AF, new List<double>() { 0 }, 1, false, comboBox_AF_SelectedIndexChanged);
+                comboBox_AF.Enabled = false;
+                FuncMisc.refreshComboBox(comboBox_FPS, new List<double>() { 0 }, 1, false, comboBox_FPS_SelectedIndexChanged);
+                comboBox_FPS.Enabled = false;
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_Install_Click(object sender, EventArgs e)

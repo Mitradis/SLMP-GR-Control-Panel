@@ -25,7 +25,8 @@ namespace SLMPLauncher
             if (File.Exists(file))
             {
                 cacheFile.AddRange(File.ReadAllLines(file));
-                for (int i = 0; i < cacheFile.Count; i++)
+                int count = cacheFile.Count;
+                for (int i = 0; i < count; i++)
                 {
                     if (!string.IsNullOrEmpty(cacheFile[i]) && !cacheFile[i].StartsWith(";"))
                     {
@@ -243,7 +244,8 @@ namespace SLMPLauncher
         }
         private static bool equalsByteArrays(byte[] ba1, byte[] ba2)
         {
-            for (int i = 0; i < ba1.Length; i++)
+            int count = ba1.Length;
+            for (int i = 0; i < count; i++)
             {
                 if (ba1[i] != ba2[i])
                 {

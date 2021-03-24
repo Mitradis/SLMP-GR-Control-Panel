@@ -190,7 +190,8 @@ namespace SLMPLauncher
             try
             {
                 byte[] ascii = Encoding.UTF8.GetBytes(path);
-                for (int i = 0; i < ascii.Length; i++)
+                int count = ascii.Length;
+                for (int i = 0; i < count; i++)
                 {
                     if (ascii[i] == 63 || ascii[i] < 32 || ascii[i] > 126)
                     {
