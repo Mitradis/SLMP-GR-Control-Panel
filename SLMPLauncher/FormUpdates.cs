@@ -352,7 +352,7 @@ namespace SLMPLauncher
                                 "Echo -Closing.",
                                 "TIMEOUT /T 2 /NOBREAK >nul 2>nul",
                                 "del \"" + FormMain.pathLauncherFolder + "Update.bat\" /Q >nul 2>nul"});
-                            FuncFiles.runProcess(FormMain.pathLauncherFolder + "Update.bat", null, null, this, true, false);
+                            FuncFiles.runProcess(FormMain.pathLauncherFolder + "Update.bat", null, null, false, true, false);
                             Application.Exit();
                         }
                         else

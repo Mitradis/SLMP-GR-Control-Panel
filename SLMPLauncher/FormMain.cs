@@ -306,7 +306,7 @@ namespace SLMPLauncher
             if (File.Exists(pathWB))
             {
                 pressedButtonEvent(button_WryeBash, BMbuttonFullPressed, button_MouseEnter, button_MouseLeave);
-                FuncFiles.runProcess(pathWB, null, closeWryeBash, this, false, false);
+                FuncFiles.runProcess(pathWB, null, closeWryeBash, false, false, false);
             }
             else
             {
@@ -324,7 +324,7 @@ namespace SLMPLauncher
             if (File.Exists(pathDSR))
             {
                 pressedButtonEvent(button_DSR, BMbuttonHalfPressed, button_Half_MouseEnter, button_Half_MouseLeave);
-                FuncFiles.runProcess(pathDSR, null, closeDSR, this, true, false);
+                FuncFiles.runProcess(pathDSR, "-jar \"" + pathDSR + "\"", closeDSR, true, false, false);
             }
             else
             {
@@ -342,7 +342,7 @@ namespace SLMPLauncher
             if (File.Exists(pathFNIS))
             {
                 pressedButtonEvent(button_FNIS, BMbuttonHalfPressed, button_Half_MouseEnter, button_Half_MouseLeave);
-                FuncFiles.runProcess(pathFNIS, null, closeFNIS, this, false, false);
+                FuncFiles.runProcess(pathFNIS, null, closeFNIS, false, false, false);
             }
             else
             {
@@ -372,7 +372,7 @@ namespace SLMPLauncher
             label1.Focus();
             if (File.Exists(pathAllApps))
             {
-                FuncFiles.runProcess(pathAllApps, null, null, this, false, false);
+                FuncFiles.runProcess(pathAllApps, null, null, false, false, false);
             }
             else
             {
@@ -597,13 +597,13 @@ namespace SLMPLauncher
                 pressedButtonEvent(button_Skyrim, BMbuttonlogoPressed, button_Skyrim_MouseEnter, button_Skyrim_MouseLeave);
                 if (argsStartsWith != null && File.Exists(argsStartsWith))
                 {
-                    FuncFiles.runProcess(argsStartsWith, null, null, this, true, false);
+                    FuncFiles.runProcess(argsStartsWith, null, null, false, true, false);
                 }
                 if (argsWaitBefore > 0)
                 {
                     Thread.Sleep(argsWaitBefore * 1000);
                 }
-                FuncFiles.runProcess(pathGameFolder + "SKSE.exe", "-forcesteamloader", closeSKSE, this, false, false);
+                FuncFiles.runProcess(pathGameFolder + "SKSE.exe", "-forcesteamloader", closeSKSE, false, false, false);
             }
             else
             {
@@ -633,7 +633,7 @@ namespace SLMPLauncher
             label1.Focus();
             if (File.Exists(pathHelp))
             {
-                FuncFiles.runProcess(pathHelp, null, null, this, true, false);
+                FuncFiles.runProcess(pathHelp, null, null, false, true, false);
             }
             else
             {

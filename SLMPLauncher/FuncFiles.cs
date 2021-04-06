@@ -145,7 +145,7 @@ namespace SLMPLauncher
             }
             if (File.Exists(path) && File.Exists(FormMain.pathLauncherFolder + "7z.exe"))
             {
-                runProcess(FormMain.pathLauncherFolder + "7z.exe", " x -y \"" + path + "\"" + " " + "-o\"" + (data ? FormMain.pathDataFolder : FormMain.pathGameFolder) + "\"", null, null, true, true);
+                runProcess(FormMain.pathLauncherFolder + "7z.exe", " x -y \"" + path + "\"" + " " + "-o\"" + (data ? FormMain.pathDataFolder : FormMain.pathGameFolder) + "\"", null, false, false, true);
             }
             else
             {
@@ -153,19 +153,19 @@ namespace SLMPLauncher
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        public static void runProcess(string path, string arg, EventHandler onexit, Form form, bool shell, bool wait)
+        public static void runProcess(string path, string arg, EventHandler onexit, bool java, bool shell, bool wait)
         {
             if (File.Exists(path))
             {
                 Process process = new Process();
-                process.StartInfo.FileName = path;
+                process.StartInfo.FileName = java ? "javaw.exe" : path;
                 if (arg != null)
                 {
                     process.StartInfo.Arguments = arg;
                 }
                 process.StartInfo.WorkingDirectory = Path.GetDirectoryName(path);
                 process.StartInfo.UseShellExecute = shell;
-                if (onexit != null && form != null && !wait)
+                if (onexit != null && !wait)
                 {
                     process.EnableRaisingEvents = true;
                     process.Exited += onexit;
