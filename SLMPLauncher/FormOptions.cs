@@ -12,6 +12,7 @@ namespace SLMPLauncher
         string pathMyDocLogs = FuncFiles.pathAddSlash(FormMain.pathMyDoc + "Logs") + "Script";
         public static List<int> screenListW = new List<int>();
         public static List<int> screenListH = new List<int>();
+        List<List<string>> masterFiles = new List<List<string>>();
         List<string> ignoreNames = new List<string>() { "Skyrim.esm", "Update.esm", "Dawnguard.esm", "HearthFires.esm", "Dragonborn.esm" };
         string pathToPlugins = FormMain.pathAppData + "Plugins.txt";
         string pathToLoader = FormMain.pathAppData + "LoadOrder.txt";
@@ -191,9 +192,11 @@ namespace SLMPLauncher
                 timer1.Enabled = false;
                 listView1.Cursor = Cursors.Default;
                 ListViewItem itemEndMove = GetItemFromPoint(listView1, Cursor.Position);
-                if (itemEndMove != null && itemEndMove != itemStartMove && itemEndMove.Index >= 4)
+                if (itemEndMove != null && itemEndMove != itemStartMove && itemEndMove.Index >= ignoreNames.Count - 1)
                 {
                     blockRefreshList = true;
+                    masterFiles.Insert(itemEndMove.Index + 1, masterFiles[itemStartMove.Index]);
+                    masterFiles.RemoveAt(itemStartMove.Index);
                     listView1.Items.Remove(itemStartMove);
                     listView1.Items.Insert(itemEndMove.Index + 1, itemStartMove);
                     scanAllMods();
@@ -235,8 +238,11 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(FuncParser.parserESPESM(FormMain.pathDataFolder + e.Item.Text).ToArray());
+            if (e.Item.Index != -1)
+            {
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(masterFiles[e.Item.Index].ToArray());
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -272,7 +278,7 @@ namespace SLMPLauncher
             int lastIndex = -1;
             bool goodSort = false;
             bool hasMasters = false;
-            foreach (string line in FuncParser.parserESPESM(FormMain.pathDataFolder + item.Text))
+            foreach (string line in masterFiles[item.Index])
             {
                 hasMasters = true;
                 ListViewItem findItem = listView1.FindItemWithText(line);
@@ -318,7 +324,7 @@ namespace SLMPLauncher
             int count = listView1.Items.Count;
             for (int i = 0; i < count; i++)
             {
-                foreach (string line in FuncParser.parserESPESM(FormMain.pathDataFolder + listView1.Items[i].Text))
+                foreach (string line in masterFiles[i])
                 {
                     if (string.Equals(line, item, StringComparison.OrdinalIgnoreCase))
                     {
@@ -359,25 +365,26 @@ namespace SLMPLauncher
             blockRefreshList = true;
             listView1.Items.Clear();
             listBox1.Items.Clear();
+            masterFiles.Clear();
             nextESMIndex = 0;
             if (File.Exists(pathToPlugins) && File.Exists(pathToLoader) && Directory.Exists(FormMain.pathDataFolder))
             {
                 List<string> pluginsList = new List<string>(File.ReadAllLines(pathToPlugins));
                 List<string> loaderList = new List<string>(File.ReadAllLines(pathToLoader));
-                List<string> mergedLists = new List<string>(pluginsList);
+                List<string> mergedList = new List<string>(pluginsList);
                 List<string> dataESFiles = new List<string>();
                 int count = loaderList.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    if (!mergedLists.Exists(s => s.Equals(loaderList[i], StringComparison.OrdinalIgnoreCase)))
+                    if (!mergedList.Exists(s => s.Equals(loaderList[i], StringComparison.OrdinalIgnoreCase)))
                     {
-                        if (mergedLists.Count > i)
+                        if (mergedList.Count > i)
                         {
-                            mergedLists.Insert(i, loaderList[i]);
+                            mergedList.Insert(i, loaderList[i]);
                         }
                         else
                         {
-                            mergedLists.Add(loaderList[i]);
+                            mergedList.Add(loaderList[i]);
                         }
                     }
                 }
@@ -400,7 +407,7 @@ namespace SLMPLauncher
                         addToListView(line, true);
                     }
                 }
-                foreach (string line in mergedLists)
+                foreach (string line in mergedList)
                 {
                     if (dataESFiles.Exists(s => s.Equals(line, StringComparison.OrdinalIgnoreCase)))
                     {
@@ -423,7 +430,7 @@ namespace SLMPLauncher
                 }
                 pluginsList = null;
                 loaderList = null;
-                mergedLists = null;
+                mergedList = null;
                 dataESFiles = null;
                 scanAllMods();
                 writeMasterFile();
@@ -440,11 +447,13 @@ namespace SLMPLauncher
             {
                 if (line.EndsWith(".esm", StringComparison.OrdinalIgnoreCase) || FuncParser.checkESM(FormMain.pathDataFolder + line))
                 {
+                    masterFiles.Insert(nextESMIndex, FuncParser.parserESPESM(FormMain.pathDataFolder + line));
                     listView1.Items.Insert(nextESMIndex, item);
                     nextESMIndex++;
                 }
                 else
                 {
+                    masterFiles.Add(FuncParser.parserESPESM(FormMain.pathDataFolder + line));
                     listView1.Items.Add(item);
                 }
             }
@@ -622,7 +631,7 @@ namespace SLMPLauncher
         }
         private void refreshAA()
         {
-            FuncMisc.refreshComboBox(comboBox_AATAB, new List<double>() { 0, 2, 4, 8 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMultiSample"), false, comboBox_AATAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_AATAB, new double[] { 0, 2, 4, 8 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMultiSample"), false, comboBox_AATAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_AFTAB_SelectedIndexChanged(object sender, EventArgs e)
@@ -635,7 +644,7 @@ namespace SLMPLauncher
         }
         private void refreshAF()
         {
-            FuncMisc.refreshComboBox(comboBox_AFTAB, new List<double>() { 0, 2, 4, 8, 16 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMaxAnisotropy"), false, comboBox_AFTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_AFTAB, new double[] { 0, 2, 4, 8, 16 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMaxAnisotropy"), false, comboBox_AFTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_ShadowTAB_SelectedIndexChanged(object sender, EventArgs e)
@@ -644,7 +653,7 @@ namespace SLMPLauncher
         }
         private void refreshShadow()
         {
-            FuncMisc.refreshComboBox(comboBox_ShadowTAB, new List<double>() { 512, 1024, 2048, 4096 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iShadowMapResolution"), false, comboBox_ShadowTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_ShadowTAB, new double[] { 512, 1024, 2048, 4096 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iShadowMapResolution"), false, comboBox_ShadowTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_TexturesTAB_SelectedIndexChanged(object sender, EventArgs e)
@@ -653,7 +662,7 @@ namespace SLMPLauncher
         }
         private void refreshTextures()
         {
-            FuncMisc.refreshComboBox(comboBox_TexturesTAB, new List<double>() { 0, 1, 2 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iTexMipMapSkip"), false, comboBox_TexturesTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_TexturesTAB, new double[] { 0, 1, 2 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iTexMipMapSkip"), false, comboBox_TexturesTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_DecalsTAB_SelectedIndexChanged(object sender, EventArgs e)
@@ -685,7 +694,7 @@ namespace SLMPLauncher
         }
         private void refreshDecals()
         {
-            FuncMisc.refreshComboBox(comboBox_DecalsTAB, new List<double>() { 0, 35, 55, 75 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMaxSkinDecalsPerFrame"), false, comboBox_DecalsTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_DecalsTAB, new double[] { 0, 35, 55, 75 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Display", "iMaxSkinDecalsPerFrame"), false, comboBox_DecalsTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_LODObjectsTAB_SelectedIndexChanged(object sender, EventArgs e)
@@ -722,7 +731,7 @@ namespace SLMPLauncher
         }
         private void refreshLODObjects()
         {
-            FuncMisc.refreshComboBox(comboBox_LODObjectsTAB, new List<double>() { 12500, 25000, 40000, 75000 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "TerrainManager", "fTreeLoadDistance"), false, comboBox_LODObjectsTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_LODObjectsTAB, new double[] { 12500, 25000, 40000, 75000 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "TerrainManager", "fTreeLoadDistance"), false, comboBox_LODObjectsTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -743,7 +752,7 @@ namespace SLMPLauncher
         }
         private void refreshWaterReflect()
         {
-            FuncMisc.refreshComboBox(comboBox_WaterReflectTAB, new List<double>() { 512, 1024, 2048 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Water", "iWaterReflectWidth"), false, comboBox_WaterReflectTAB_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_WaterReflectTAB, new double[] { 512, 1024, 2048 }, FuncParser.intRead(FormMain.pathSkyrimPrefsINI, "Water", "iWaterReflectWidth"), false, comboBox_WaterReflectTAB_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void comboBox_ZFighting_SelectedIndexChanged(object sender, EventArgs e)
@@ -753,7 +762,7 @@ namespace SLMPLauncher
         }
         private void refreshZFightingCB()
         {
-            FuncMisc.refreshComboBox(comboBox_ZFighting, new List<double>() { 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }, FuncParser.intRead(FormMain.pathSkyrimINI, "Display", "fNearDistance"), false, comboBox_ZFighting_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_ZFighting, new double[] { 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }, FuncParser.intRead(FormMain.pathSkyrimINI, "Display", "fNearDistance"), false, comboBox_ZFighting_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_ZFighting_Click(object sender, EventArgs e)

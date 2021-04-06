@@ -63,7 +63,7 @@ namespace SLMPLauncher
         }
         private void refreshStyles()
         {
-            FuncMisc.refreshComboBox(comboBox_Styles, new List<double>() { 1, 2 }, FormMain.numberStyle, false, comboBox_Styles_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_Styles, new double[] { 1, 2 }, FormMain.numberStyle, false, comboBox_Styles_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_RU_Click(object sender, EventArgs e)

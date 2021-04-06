@@ -68,7 +68,7 @@ namespace SLMPLauncher
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        public static void refreshComboBox(ComboBox combobox, List<double> list, double value, bool notEqual, EventHandler onchange)
+        public static void refreshComboBox(ComboBox combobox, double[] list, double value, bool notEqual, EventHandler onchange)
         {
             if (onchange != null)
             {
@@ -76,7 +76,7 @@ namespace SLMPLauncher
             }
             if (value != -1)
             {
-                int count = list.Count;
+                int count = list.Length;
                 for (int i = 0; i < count; i++)
                 {
                     if (value == list[i] || (notEqual && value < list[i]))

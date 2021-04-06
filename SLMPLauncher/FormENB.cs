@@ -239,7 +239,7 @@ namespace SLMPLauncher
             af = FuncMisc.refreshButton(button_AF, FormMain.pathENBLocalINI, "ENGINE", "ForceAnisotropicFiltering", null, false);
             if (af)
             {
-                FuncMisc.refreshComboBox(comboBox_AF, new List<double>() { 0, 2, 4, 8, 16 }, FuncParser.intRead(FormMain.pathENBLocalINI, "ENGINE", "MaxAnisotropy"), false, comboBox_AF_SelectedIndexChanged);
+                FuncMisc.refreshComboBox(comboBox_AF, new double[] { 0, 2, 4, 8, 16 }, FuncParser.intRead(FormMain.pathENBLocalINI, "ENGINE", "MaxAnisotropy"), false, comboBox_AF_SelectedIndexChanged);
             }
             else
             {
@@ -264,7 +264,7 @@ namespace SLMPLauncher
         private void refreshFPS()
         {
             fps = (FormMain.setupENB == 2 && FuncMisc.refreshButton(button_FPS, FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", null, false)) || (FormMain.setupENB == 1 && File.Exists(FormMain.pathGameFolder + "d3d9.ini"));
-            if (FormMain.setupENB == 1)
+            if (FormMain.setupENB == 0 || FormMain.setupENB == 1)
             {
                 FuncMisc.refreshButton(button_FPS, "", "", "", null, false);
             }
@@ -282,7 +282,7 @@ namespace SLMPLauncher
         private void refreshReservedMemory()
         {
             comboBox_ReservedMemory.Enabled = File.Exists(FormMain.pathENBLocalINI);
-            FuncMisc.refreshComboBox(comboBox_ReservedMemory, new List<double>() { 64, 128, 256, 384, 512, 640, 768, 896, 1024 }, FuncParser.intRead(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb"), false, comboBox_ReservedMemory_SelectedIndexChanged);
+            FuncMisc.refreshComboBox(comboBox_ReservedMemory, new double[] { 64, 128, 256, 384, 512, 640, 768, 896, 1024 }, FuncParser.intRead(FormMain.pathENBLocalINI, "MEMORY", "ReservedMemorySizeMb"), false, comboBox_ReservedMemory_SelectedIndexChanged);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_ExpandMemory_Click(object sender, EventArgs e)
