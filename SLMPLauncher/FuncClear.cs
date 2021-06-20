@@ -17,7 +17,8 @@ namespace SLMPLauncher
                 "binkw32.dll",
                 "d3d9.dll",
                 "d3d9.ini",
-                "d3d9limiter.dll",
+                "d3d9_fxaa.dll",
+                "d3d9_smaa.dll",
                 "data",
                 "data|GameText10.bsa",
                 "data|additemmenu2.bsa",
@@ -40,9 +41,9 @@ namespace SLMPLauncher
                 "data|book covers skyrim.esp",
                 "data|camerascripter.bsa",
                 "data|camerascripter.esp",
+                "data|camerascripts",
                 "data|campfire.bsa",
                 "data|campfire.esm",
-                "data|camerascripts",
                 "data|coinpurse.bsa",
                 "data|coinpurse.esp",
                 "data|customizable camera.bsa",
@@ -283,11 +284,14 @@ namespace SLMPLauncher
                 "enbinjector.exe",
                 "enbinjector.ini",
                 "enblocal.ini",
-                "enbseries.dll",
                 "enbseries",
+                "enbseries.dll",
                 "enbseries.ini",
+                "fxaa_tool.exe",
+                "injfx_shaders",
                 "logs",
                 "logs|.logs.txt",
+                "shader.fx",
                 "skse.exe",
                 "skse_1_9_32.dll",
                 "skse_loader.dll",
@@ -305,6 +309,8 @@ namespace SLMPLauncher
                 "skyrim|slmplauncher.exe",
                 "skyrim|slmplauncher.ini",
                 "skyrim|system",
+                "smaa.fx",
+                "smaa.h",
                 "steam_api.dll",
                 "steam_rld.ini",
                 "tesv.exe" });
@@ -342,6 +348,7 @@ namespace SLMPLauncher
                 "data|tools|generatefnis_for_users|languages",
                 "data|tools|generatefnis_for_users|templates",
                 "enbseries",
+                "injfx_shaders",
                 "skyrim|enb",
                 "skyrim|mods",
                 "skyrim|system" });
@@ -404,7 +411,7 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static void removeENB()
         {
-            foreach (string line in new string[] { "d3d9.dll", "d3d9.ini", "d3d9limiter.dll", "enbhost.exe", "enbinjector.exe", "enbinjector.ini", "enblocal.ini", "enbseries.dll", "enbseries", "enbseries.ini" })
+            foreach (string line in new string[] { "d3d9.dll", "enbhost.exe", "enbinjector.exe", "enbinjector.ini", "enblocal.ini", "enbseries.dll", "enbseries", "enbseries.ini", "injfx_shaders", "d3d9_fxaa.dll", "fxaa_tool.exe", "shader.fx", "d3d9.ini", "d3d9_smaa.dll", "smaa.fx", "smaa.h" })
             {
                 FuncFiles.deleteAny(FormMain.pathGameFolder + line);
             }

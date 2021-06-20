@@ -19,7 +19,7 @@ namespace SLMPLauncher
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "iShadowMapResolution", "512");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "bFXAAEnabled", "1");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Grass", "fGrassStartFadeDistance", "1000.0000");
-                FuncParser.iniWrite(FormMain.pathSkyrimINI, "Grass", "iMinGrassSize", "30");
+                FuncParser.iniWrite(FormMain.pathSkyrimINI, "Grass", "iMinGrassSize", "40");
 
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "fMeshLODLevel1FadeDist", "4096.0000");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "fMeshLODLevel2FadeDist", "3072.0000");
@@ -61,7 +61,7 @@ namespace SLMPLauncher
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "iShadowMapResolution", "1024");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "bFXAAEnabled", "1");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Grass", "fGrassStartFadeDistance", "3000.0000");
-                FuncParser.iniWrite(FormMain.pathSkyrimINI, "Grass", "iMinGrassSize", "25");
+                FuncParser.iniWrite(FormMain.pathSkyrimINI, "Grass", "iMinGrassSize", "30");
 
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "fMeshLODLevel1FadeDist", "4096.0000");
                 FuncParser.iniWrite(FormMain.pathSkyrimPrefsINI, "Display", "fMeshLODLevel2FadeDist", "3072.0000");
@@ -183,14 +183,10 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         public static void physicsFPS()
         {
-            FuncParser.iniWrite(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime", ((1 / FormMain.maxFPS).ToString() + "000000").Replace(",", ".").Remove(6));
-            if (FormMain.setupENB == 2 && File.Exists(FormMain.pathENBLocalINI))
+            FuncParser.iniWrite(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime", ((1 / (FormMain.maxFPS >= 60 ? FormMain.maxFPS : 60)).ToString() + "000000").Replace(",", ".").Remove(6));
+            if (FormMain.setupENB > 0 && File.Exists(FormMain.pathENBLocalINI))
             {
                 FuncParser.iniWrite(FormMain.pathENBLocalINI, "LIMITER", "FPSLimit", FormMain.maxFPS.ToString() + ".0");
-            }
-            else if (FormMain.setupENB == 1 && File.Exists(FormMain.pathGameFolder + "d3d9.ini"))
-            {
-                FuncParser.iniWrite(FormMain.pathGameFolder + "d3d9.ini", "MAIN", "FPSLimit", FormMain.maxFPS.ToString());
             }
         }
         public static void restoreENBAdapter()
@@ -355,7 +351,9 @@ namespace SLMPLauncher
                 "bReflectLODObjects=1",
                 "bReflectLODLand=1",
                 "bReflectSky=1",
-                "bReflectLODTrees=1"};
+                "bReflectLODTrees=1",
+                ""
+            };
         }
         public static List<string> skyrimPrefsINI()
         {
@@ -403,11 +401,23 @@ namespace SLMPLauncher
                 "iShadowMapResolution=4096",
                 "fShadowBiasScale=1.0000",
                 "iShadowMaskQuarter=4",
+                "; next 9 unused by the game",
+                "fLeafAnimDampenDistEnd=4600.0000",
+                "fLeafAnimDampenDistStart=3600.0000",
+                "fDecalLOD2=1500.0000",
+                "fDecalLOD1=1000.0000",
+                "fSpecularLODStartFade=600.0000",
+                "fShadowLODStartFade=200.0000",
+                "iWaterMultiSamples=0",
+                "iShadowMode=3",
+                "bDrawShadows=1",
                 "",
                 "[Grass]",
                 "fGrassStartFadeDistance=7000.0000",
                 "fGrassMaxStartFadeDistance=7000.0000",
                 "fGrassMinStartFadeDistance=400.0000",
+                "; next 1 unused by the game",
+                "b30GrassVS=0",
                 "",
                 "[MAIN]",
                 "bGamepadEnable=0",
@@ -453,6 +463,8 @@ namespace SLMPLauncher
                 "fBlockLevel1Distance=70000.0000",
                 "fBlockLevel0Distance=35000.0000",
                 "fSplitDistanceMult=1.5000",
+                "; next 1 unused by the game",
+                "bShowLODInEditor=0",
                 "",
                 "[Trees]",
                 "bRenderSkinnedTrees=1",
@@ -468,7 +480,23 @@ namespace SLMPLauncher
                 "iWaterReflectHeight=2048",
                 "iWaterReflectWidth=2048",
                 "bUseWaterDisplacements=1",
-                "bUseWaterReflections=1"};
+                "bUseWaterReflections=1",
+                "; next 2 unused by the game",
+                "bUseWaterRefractions=1",
+                "bUseWaterDepth=1",
+                "",
+                "[Clouds]",
+                "; next 4 unused by the game",
+                "fCloudLevel2Distance=262144.0000",
+                "fCloudLevel1Distance=32768.0000",
+                "fCloudLevel0Distance=16384.0000",
+                "fCloudNearFadeDistance=9000.0000",
+                "",
+                "[Decals]",
+                "; next 1 unused by the game",
+                "uMaxDecals=100",
+                ""
+            };
         }
         public static List<string> pluginsTXT()
         {
@@ -532,7 +560,9 @@ namespace SLMPLauncher
                 "StaticLoadingScreens.esp",
                 "RemoveFakeDirectLight.esp",
                 "Occlusion Of The Worlds.esp",
-                "Dual Sheath Redux Patch.esp"};
+                "Dual Sheath Redux Patch.esp",
+                ""
+            };
         }
     }
 }

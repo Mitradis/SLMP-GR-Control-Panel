@@ -148,9 +148,23 @@ namespace SLMPLauncher
             {
                 FuncMisc.toggleButtons(this, false);
                 listBox1.Enabled = false;
-                FuncClear.removeENB();
-                FuncFiles.unpackArhive(FormMain.pathENBFolder + listBox1.SelectedItem.ToString(), false, false);
-                FuncParser.iniWrite(FormMain.pathLauncherINI, "ENB", "LastPreset", listBox1.SelectedItem.ToString());
+                string file = listBox1.SelectedItem.ToString();
+                if (file.StartsWith("Proxy DLL - "))
+                {
+                    if (FormMain.setupENB > 0)
+                    {
+                        FuncParser.iniWrite(FormMain.pathENBLocalINI, "PROXY", "EnableProxyLibrary", "true");
+                        FuncParser.iniWrite(FormMain.pathENBLocalINI, "PROXY", "InitProxyFunctions", "true");
+                        FuncParser.iniWrite(FormMain.pathENBLocalINI, "PROXY", "ProxyLibrary", "d3d9_" + Path.GetFileNameWithoutExtension(file).Replace("Proxy DLL - ", "").ToLower() + ".dll");
+                        FuncFiles.unpackArhive(FormMain.pathENBFolder + file, false, false);
+                    }
+                }
+                else
+                {
+                    FuncClear.removeENB();
+                    FuncParser.iniWrite(FormMain.pathLauncherINI, "ENB", "LastPreset", file);
+                    FuncFiles.unpackArhive(FormMain.pathENBFolder + file, false, false);
+                }
                 listBox1.Enabled = true;
                 FuncMisc.toggleButtons(this, true);
                 refreshAllValue();
@@ -263,11 +277,7 @@ namespace SLMPLauncher
         }
         private void refreshFPS()
         {
-            fps = (FormMain.setupENB == 2 && FuncMisc.refreshButton(button_FPS, FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", null, false)) || (FormMain.setupENB == 1 && File.Exists(FormMain.pathGameFolder + "d3d9.ini"));
-            if (FormMain.setupENB == 0 || FormMain.setupENB == 1)
-            {
-                FuncMisc.refreshButton(button_FPS, "", "", "", null, false);
-            }
+            fps = FuncMisc.refreshButton(button_FPS, FormMain.pathENBLocalINI, "LIMITER", "EnableFPSLimit", null, false);
             numericUpDown1.Value = FormMain.maxFPS;
             numericUpDown1.Enabled = fps;
         }

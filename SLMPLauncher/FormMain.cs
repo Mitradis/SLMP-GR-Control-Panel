@@ -69,8 +69,6 @@ namespace SLMPLauncher
         string textUseStandart = null;
         string[] typeSettings = null;
         int argsWaitBefore = 0;
-        int mouseWindowX = 0;
-        int mouseWindowY = 0;
         const int CS_DBLCLKS = 0x8;
         const int WS_MINIMIZEBOX = 0x20000;
         bool windgetOpen = false;
@@ -89,6 +87,7 @@ namespace SLMPLauncher
         Bitmap BMbuttonlogoGlow;
         Bitmap BMbuttonlogoPressed;
         FormWidget settingsWidget = null;
+        Point lastLocation;
 
         public FormMain()
         {
@@ -671,8 +670,7 @@ namespace SLMPLauncher
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseWindowX = e.X + 1;
-            mouseWindowY = e.Y + 1;
+            lastLocation = e.Location;
             label1.MouseMove += MainForm_MouseMove;
             label1.MouseLeave += MainForm_MouseLeave;
         }
@@ -688,7 +686,7 @@ namespace SLMPLauncher
         }
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            Location = new Point(Cursor.Position.X - mouseWindowX, Cursor.Position.Y - mouseWindowY);
+            Location = new Point((Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
             if (windgetOpen)
             {
                 settingsWidget.Location = new Point(Left, Top - settingsWidget.Size.Height);
@@ -721,7 +719,7 @@ namespace SLMPLauncher
             button_Programs.Text = "Программы";
             button_ResetSettings.Text = "Сброс Настроек";
             textAlreadyExists = "Файл уже существует: ";
-            textClearDirectory = "Очистить директорию?";
+            textClearDirectory = "Очистить директорию? ВНИМАНИЕ: Все файлы не относящиеся к сборке и не внесенные в игнор-лист будут удалены!";
             textConfirmTitle = "Подтверждение";
             textCouldNotDelete = "Не удалось удалить: ";
             textCouldNotMove = "Не удалось переместить: ";
@@ -765,7 +763,7 @@ namespace SLMPLauncher
             button_Programs.Text = "Programs";
             button_ResetSettings.Text = "Reset Settings";
             textAlreadyExists = "File already exists: ";
-            textClearDirectory = "Clear directory?";
+            textClearDirectory = "Clear directory? ATTENTION: All files not related to the assembly and not included in the ignore list will be deleted!";
             textConfirmTitle = "Confirm";
             textCouldNotDelete = "Could not delete: ";
             textCouldNotMove = "Failed to move: ";
