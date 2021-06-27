@@ -184,7 +184,7 @@ namespace SLMPLauncher
         public static void physicsFPS()
         {
             FuncParser.iniWrite(FormMain.pathSkyrimINI, "HAVOK", "fMaxTime", ((1 / (FormMain.maxFPS >= 60 ? FormMain.maxFPS : 60)).ToString() + "000000").Replace(",", ".").Remove(6));
-            if (FormMain.setupENB > 0 && File.Exists(FormMain.pathENBLocalINI))
+            if (File.Exists(FormMain.pathENBLocalINI))
             {
                 FuncParser.iniWrite(FormMain.pathENBLocalINI, "LIMITER", "FPSLimit", FormMain.maxFPS.ToString() + ".0");
             }
