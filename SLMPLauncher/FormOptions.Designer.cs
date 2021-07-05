@@ -280,7 +280,7 @@
             this.button_FXAATAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_FXAATAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_FXAATAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_FXAATAB.Location = new System.Drawing.Point(301, 342);
+            this.button_FXAATAB.Location = new System.Drawing.Point(305, 342);
             this.button_FXAATAB.Name = "button_FXAATAB";
             this.button_FXAATAB.Size = new System.Drawing.Size(50, 22);
             this.button_FXAATAB.TabIndex = 22;
@@ -384,7 +384,7 @@
             this.button_ReflectLanscapeTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectLanscapeTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectLanscapeTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ReflectLanscapeTAB.Location = new System.Drawing.Point(301, 154);
+            this.button_ReflectLanscapeTAB.Location = new System.Drawing.Point(305, 154);
             this.button_ReflectLanscapeTAB.Name = "button_ReflectLanscapeTAB";
             this.button_ReflectLanscapeTAB.Size = new System.Drawing.Size(50, 22);
             this.button_ReflectLanscapeTAB.TabIndex = 16;
@@ -400,7 +400,7 @@
             this.button_ReflectObjectsTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectObjectsTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectObjectsTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ReflectObjectsTAB.Location = new System.Drawing.Point(301, 178);
+            this.button_ReflectObjectsTAB.Location = new System.Drawing.Point(305, 178);
             this.button_ReflectObjectsTAB.Name = "button_ReflectObjectsTAB";
             this.button_ReflectObjectsTAB.Size = new System.Drawing.Size(50, 22);
             this.button_ReflectObjectsTAB.TabIndex = 17;
@@ -416,7 +416,7 @@
             this.button_ReflectSkyTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectSkyTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectSkyTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ReflectSkyTAB.Location = new System.Drawing.Point(301, 130);
+            this.button_ReflectSkyTAB.Location = new System.Drawing.Point(305, 130);
             this.button_ReflectSkyTAB.Name = "button_ReflectSkyTAB";
             this.button_ReflectSkyTAB.Size = new System.Drawing.Size(50, 22);
             this.button_ReflectSkyTAB.TabIndex = 15;
@@ -432,7 +432,7 @@
             this.button_ReflectTreesTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectTreesTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_ReflectTreesTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ReflectTreesTAB.Location = new System.Drawing.Point(301, 202);
+            this.button_ReflectTreesTAB.Location = new System.Drawing.Point(305, 202);
             this.button_ReflectTreesTAB.Name = "button_ReflectTreesTAB";
             this.button_ReflectTreesTAB.Size = new System.Drawing.Size(50, 22);
             this.button_ReflectTreesTAB.TabIndex = 18;
@@ -470,7 +470,7 @@
             this.button_VsyncTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_VsyncTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_VsyncTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_VsyncTAB.Location = new System.Drawing.Point(301, 286);
+            this.button_VsyncTAB.Location = new System.Drawing.Point(305, 286);
             this.button_VsyncTAB.Name = "button_VsyncTAB";
             this.button_VsyncTAB.Size = new System.Drawing.Size(50, 22);
             this.button_VsyncTAB.TabIndex = 20;
@@ -486,7 +486,7 @@
             this.button_WindowTAB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlText;
             this.button_WindowTAB.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlText;
             this.button_WindowTAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_WindowTAB.Location = new System.Drawing.Point(301, 314);
+            this.button_WindowTAB.Location = new System.Drawing.Point(305, 314);
             this.button_WindowTAB.Name = "button_WindowTAB";
             this.button_WindowTAB.Size = new System.Drawing.Size(50, 22);
             this.button_WindowTAB.TabIndex = 21;
@@ -519,9 +519,9 @@
             "2",
             "4",
             "8"});
-            this.comboBox_AATAB.Location = new System.Drawing.Point(7, 225);
+            this.comboBox_AATAB.Location = new System.Drawing.Point(8, 225);
             this.comboBox_AATAB.Name = "comboBox_AATAB";
-            this.comboBox_AATAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_AATAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_AATAB.TabIndex = 10;
             this.comboBox_AATAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_AATAB_SelectedIndexChanged);
             // 
@@ -536,9 +536,9 @@
             "4",
             "8",
             "16"});
-            this.comboBox_AFTAB.Location = new System.Drawing.Point(7, 274);
+            this.comboBox_AFTAB.Location = new System.Drawing.Point(8, 274);
             this.comboBox_AFTAB.Name = "comboBox_AFTAB";
-            this.comboBox_AFTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_AFTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_AFTAB.TabIndex = 11;
             this.comboBox_AFTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_AFTAB_SelectedIndexChanged);
             // 
@@ -552,9 +552,9 @@
             "Среднее",
             "Высоко",
             "Ультра"});
-            this.comboBox_DecalsTAB.Location = new System.Drawing.Point(7, 372);
+            this.comboBox_DecalsTAB.Location = new System.Drawing.Point(8, 372);
             this.comboBox_DecalsTAB.Name = "comboBox_DecalsTAB";
-            this.comboBox_DecalsTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_DecalsTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_DecalsTAB.TabIndex = 13;
             this.comboBox_DecalsTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_DecalsTAB_SelectedIndexChanged);
             // 
@@ -568,9 +568,9 @@
             "Среднее",
             "Высоко",
             "Ультра"});
-            this.comboBox_LODObjectsTAB.Location = new System.Drawing.Point(7, 416);
+            this.comboBox_LODObjectsTAB.Location = new System.Drawing.Point(8, 416);
             this.comboBox_LODObjectsTAB.Name = "comboBox_LODObjectsTAB";
-            this.comboBox_LODObjectsTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_LODObjectsTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_LODObjectsTAB.TabIndex = 27;
             this.comboBox_LODObjectsTAB.Visible = false;
             this.comboBox_LODObjectsTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_LODObjectsTAB_SelectedIndexChanged);
@@ -580,9 +580,9 @@
             this.comboBox_ResolutionTAB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_ResolutionTAB.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_ResolutionTAB.FormattingEnabled = true;
-            this.comboBox_ResolutionTAB.Location = new System.Drawing.Point(7, 127);
+            this.comboBox_ResolutionTAB.Location = new System.Drawing.Point(8, 127);
             this.comboBox_ResolutionTAB.Name = "comboBox_ResolutionTAB";
-            this.comboBox_ResolutionTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_ResolutionTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_ResolutionTAB.TabIndex = 8;
             this.comboBox_ResolutionTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_ResolutionTAB_SelectedIndexChanged);
             // 
@@ -593,9 +593,9 @@
             this.comboBox_ScreenTAB.FormattingEnabled = true;
             this.comboBox_ScreenTAB.Items.AddRange(new object[] {
             "0"});
-            this.comboBox_ScreenTAB.Location = new System.Drawing.Point(7, 176);
+            this.comboBox_ScreenTAB.Location = new System.Drawing.Point(8, 176);
             this.comboBox_ScreenTAB.Name = "comboBox_ScreenTAB";
-            this.comboBox_ScreenTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_ScreenTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_ScreenTAB.TabIndex = 9;
             this.comboBox_ScreenTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_ScreenTAB_SelectedIndexChanged);
             // 
@@ -609,9 +609,9 @@
             "1024",
             "2048",
             "4096"});
-            this.comboBox_ShadowTAB.Location = new System.Drawing.Point(7, 421);
+            this.comboBox_ShadowTAB.Location = new System.Drawing.Point(8, 421);
             this.comboBox_ShadowTAB.Name = "comboBox_ShadowTAB";
-            this.comboBox_ShadowTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_ShadowTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_ShadowTAB.TabIndex = 14;
             this.comboBox_ShadowTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_ShadowTAB_SelectedIndexChanged);
             // 
@@ -624,9 +624,9 @@
             "Высоко",
             "Среднее",
             "Низко"});
-            this.comboBox_TexturesTAB.Location = new System.Drawing.Point(7, 323);
+            this.comboBox_TexturesTAB.Location = new System.Drawing.Point(8, 323);
             this.comboBox_TexturesTAB.Name = "comboBox_TexturesTAB";
-            this.comboBox_TexturesTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_TexturesTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_TexturesTAB.TabIndex = 12;
             this.comboBox_TexturesTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_TexturesTAB_SelectedIndexChanged);
             // 
@@ -639,9 +639,9 @@
             "512",
             "1024",
             "2048"});
-            this.comboBox_WaterReflectTAB.Location = new System.Drawing.Point(188, 246);
+            this.comboBox_WaterReflectTAB.Location = new System.Drawing.Point(189, 246);
             this.comboBox_WaterReflectTAB.Name = "comboBox_WaterReflectTAB";
-            this.comboBox_WaterReflectTAB.Size = new System.Drawing.Size(168, 23);
+            this.comboBox_WaterReflectTAB.Size = new System.Drawing.Size(166, 23);
             this.comboBox_WaterReflectTAB.TabIndex = 19;
             this.comboBox_WaterReflectTAB.SelectedIndexChanged += new System.EventHandler(this.comboBox_WaterReflectTAB_SelectedIndexChanged);
             // 

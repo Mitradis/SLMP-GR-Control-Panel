@@ -645,7 +645,12 @@ namespace SLMPLauncher
             if (!windgetOpen)
             {
                 windgetOpen = true;
-                settingsWidget = new FormWidget();
+                bool hide = FuncParser.readAsBool(pathLauncherINI, "General", "HideWebButton");
+                settingsWidget = new FormWidget(hide);
+                if (hide)
+                {
+                    settingsWidget.ClientSize = new System.Drawing.Size(232, 60);
+                }
                 settingsWidget.DesktopLocation = new Point(Left, Top - settingsWidget.Size.Height);
                 settingsWidget.Show(this);
                 button_Widget.BackgroundImage = Properties.Resources.buttonWidgetPressed;

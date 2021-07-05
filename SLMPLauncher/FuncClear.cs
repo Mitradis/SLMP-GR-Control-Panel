@@ -212,6 +212,8 @@ namespace SLMPLauncher
                 "data|skse|plugins|hdtphysicsextensions.ini",
                 "data|skse|plugins|hdtphysicsextensionscrashfix.dll",
                 "data|skse|plugins|hdtphysicsextensionsdefaultbbp.xml",
+                "data|skse|plugins|hdtskyrimmempatch.dll",
+                "data|skse|plugins|hdtskyrimmempatch.ini",
                 "data|skse|plugins|improvement_names.dll",
                 "data|skse|plugins|improvement_names.ini",
                 "data|skse|plugins|memoryblockslog.dll",

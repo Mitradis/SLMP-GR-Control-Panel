@@ -6,7 +6,7 @@ namespace SLMPLauncher
 {
     public partial class FormWidget : Form
     {
-        public FormWidget()
+        public FormWidget(bool hide)
         {
             InitializeComponent();
             FuncMisc.setFormFont(this);
@@ -22,13 +22,8 @@ namespace SLMPLauncher
             {
                 refreshStyles();
             }
-            if (FuncParser.readAsBool(FormMain.pathLauncherINI, "General", "HideWebButton"))
-            {
-                ClientSize = new System.Drawing.Size(232, 60);
-                label1.Size = new System.Drawing.Size(232, 60);
-                pictureBox2.Visible = false;
-                button_Updates.Visible = false;
-            }
+            pictureBox2.Visible = !hide;
+            button_Updates.Visible = !hide;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void ImageBackgroundImage()
