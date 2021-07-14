@@ -184,16 +184,15 @@ namespace SLMPLauncher
         {
             double[] arList = new double[] { 1.3, 1.4, 1.7, 1.8, 2.5 };
             double arRes = (double)width / height;
-            int arOld = FuncParser.intRead(FormMain.pathLauncherINI, "General", "AspectRatio");
             int count = arList.Length;
             for (int i = 0; i < count; i++)
             {
                 if (arRes <= arList[i] || (i == 4 && arRes > 2.5))
                 {
-                    if (arOld != i)
+                    if (FormMain.aspectRatio != i)
                     {
                         FuncFiles.unpackArhive(FormMain.pathSystemFolder + "AR(" + i.ToString() + ")", true, true);
-                        FuncParser.iniWrite(FormMain.pathLauncherINI, "General", "AspectRatio", i.ToString());
+                        FormMain.aspectRatio = i;
                     }
                     break;
                 }

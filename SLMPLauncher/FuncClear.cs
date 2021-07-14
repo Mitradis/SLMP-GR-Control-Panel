@@ -118,8 +118,6 @@ namespace SLMPLauncher
                 "data|interface|fontconfig.txt",
                 "data|interiors furniture fix.bsa",
                 "data|interiors furniture fix.esp",
-                "data|inviseyefixes.bsa",
-                "data|inviseyefixes.esp",
                 "data|jaxonzmapmarkers.bsa",
                 "data|jaxonzmapmarkers.esp",
                 "data|landscape improved.bsa",

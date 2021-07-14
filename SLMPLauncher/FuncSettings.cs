@@ -527,7 +527,6 @@ namespace SLMPLauncher
                 "Quests Markers.esp",
                 "AddItemMenu2.esp",
                 "ArmorWeapon.esp",
-                "InvisEyeFixes.esp",
                 "HorseArmor.esp",
                 "ENB Vision.esp",
                 "RaceMenu.esp",

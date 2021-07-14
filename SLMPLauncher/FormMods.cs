@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace SLMPLauncher
 {
     public partial class FormMods : Form
     {
+        string pathToPlugins = FormMain.pathAppData + "Plugins.txt";
         string textDeleteMod = "Удалить мод?";
         string textNoFileSelect = "Не выбран файл.";
         string textNoUninstalFile = "Нет .txt файла инструкции.";
@@ -58,7 +60,11 @@ namespace SLMPLauncher
         {
             if (listBox1.SelectedIndex != -1)
             {
-                fileUnpack(listBox1.SelectedItem.ToString());
+                FuncMisc.toggleButtons(this, false);
+                listBox1.Enabled = false;
+                FuncFiles.unpackArhive(FormMain.pathModsFolder + listBox1.SelectedItem.ToString(), false, true);
+                FuncMisc.toggleButtons(this, true);
+                listBox1.Enabled = true;
                 string file = FormMain.pathModsFolder + Path.GetFileNameWithoutExtension(FormMain.pathModsFolder + listBox1.SelectedItem.ToString()) + ".txt";
                 if (File.Exists(file))
                 {
@@ -69,11 +75,22 @@ namespace SLMPLauncher
                             FuncMisc.resourceArchives(line, false);
                         }
                     }
-                    if (FuncParser.keyExists(file, "INSTALL", "ASPECTRATIO") && FuncParser.keyExists(file, "INSTALL", "UNPACK"))
+                    if (FuncParser.keyExists(file, "INSTALL", "ASPECTRATIO_" + FormMain.aspectRatio.ToString()))
                     {
-                        if (FuncParser.stringRead(file, "INSTALL", "ASPECTRATIO") == FuncParser.stringRead(FormMain.pathLauncherINI, "General", "AspectRatio"))
+                        FuncFiles.unpackArhive(FormMain.pathGameFolder + FuncParser.stringRead(file, "INSTALL", "ASPECTRATIO_" + FormMain.aspectRatio.ToString()), true, true);
+                    }
+                    if (File.Exists(pathToPlugins))
+                    {
+                        foreach (string line in File.ReadLines(file))
                         {
-                            FuncFiles.unpackArhive(FormMain.pathGameFolder + FuncParser.stringRead(file, "INSTALL", "UNPACK"), true, true);
+                            if (string.IsNullOrEmpty(line) || line.StartsWith("["))
+                            {
+                                break;
+                            }
+                            else if (line.EndsWith(".esm") || line.EndsWith(".esp"))
+                            {
+                                resortPlugins(line);
+                            }
                         }
                     }
                 }
@@ -83,13 +100,44 @@ namespace SLMPLauncher
                 MessageBox.Show(textNoFileSelect);
             }
         }
-        private void fileUnpack(string filename)
+        private void resortPlugins(string plugin)
         {
-            FuncMisc.toggleButtons(this, false);
-            listBox1.Enabled = false;
-            FuncFiles.unpackArhive(FormMain.pathModsFolder + filename, false, true);
-            FuncMisc.toggleButtons(this, true);
-            listBox1.Enabled = true;
+            List<string> pluginsList = new List<string>(File.ReadAllLines(pathToPlugins));
+            if (File.Exists(FormMain.pathDataFolder + plugin) && pluginsList.IndexOf(plugin) == -1)
+            {
+                List<string> defaultList = new List<string>();
+                if (File.Exists(FormMain.pathLauncherFolder + "Plugins.txt"))
+                {
+                    defaultList.AddRange(File.ReadAllLines(FormMain.pathLauncherFolder + "Plugins.txt"));
+                }
+                else
+                {
+                    defaultList.AddRange(FuncSettings.pluginsTXT());
+                }
+                string find = null;
+                int index1 = defaultList.IndexOf(plugin);
+                int count = defaultList.Count;
+                int index2 = -1;
+                for (int i = 0; i < count; i++)
+                {
+                    index1 -= 1;
+                    if (index1 != -1)
+                    {
+                        find = defaultList[index1];
+                        index2 = pluginsList.IndexOf(find);
+                        if (index2 != -1)
+                        {
+                            pluginsList.Insert(index2 + 1, plugin);
+                            FuncFiles.writeToFile(pathToPlugins, pluginsList);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_Uninstall_Click(object sender, EventArgs e)

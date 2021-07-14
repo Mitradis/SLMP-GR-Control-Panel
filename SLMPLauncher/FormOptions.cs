@@ -827,7 +827,6 @@ namespace SLMPLauncher
         {
             rsky = FuncMisc.refreshButton(button_ReflectSkyTAB, FormMain.pathSkyrimINI, "Water", "bReflectSky", null, false);
         }
-
         private void button_ReflectLanscapeTAB_Click(object sender, EventArgs e)
         {
             FuncParser.iniWrite(FormMain.pathSkyrimINI, "Water", "bReflectLODLand", Convert.ToInt32(!rland).ToString());
@@ -837,7 +836,6 @@ namespace SLMPLauncher
         {
             rland = FuncMisc.refreshButton(button_ReflectLanscapeTAB, FormMain.pathSkyrimINI, "Water", "bReflectLODLand", null, false);
         }
-
         private void button_ReflectObjectsTAB_Click(object sender, EventArgs e)
         {
             FuncParser.iniWrite(FormMain.pathSkyrimINI, "Water", "bReflectLODObjects", Convert.ToInt32(!robj).ToString());
@@ -847,7 +845,6 @@ namespace SLMPLauncher
         {
             robj = FuncMisc.refreshButton(button_ReflectObjectsTAB, FormMain.pathSkyrimINI, "Water", "bReflectLODObjects", null, false);
         }
-
         private void button_ReflectTreesTAB_Click(object sender, EventArgs e)
         {
             FuncParser.iniWrite(FormMain.pathSkyrimINI, "Water", "bReflectLODTrees", Convert.ToInt32(!rtree).ToString());

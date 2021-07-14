@@ -45,6 +45,7 @@ namespace SLMPLauncher
         public static string textNotFound = null;
         public static decimal maxFPS = 60;
         public static decimal memorySizeENB = 2048;
+        public static int aspectRatio = -1;
         public static int gameDirLength = pathGameFolder.Length;
         public static int numberStyle = 1;
         public static int settingsPreset = 2;
@@ -145,6 +146,11 @@ namespace SLMPLauncher
                 if (settingsPreset < 0 || settingsPreset > 3)
                 {
                     settingsPreset = 2;
+                }
+                aspectRatio = FuncParser.intRead(pathLauncherINI, "General", "AspectRatio");
+                if (numberStyle < -1 || numberStyle > 4)
+                {
+                    aspectRatio = -1;
                 }
                 numberStyle = FuncParser.intRead(pathLauncherINI, "General", "NumberStyle");
                 if (numberStyle < 1 || numberStyle > 2)
@@ -285,15 +291,16 @@ namespace SLMPLauncher
             }
             else
             {
-                FuncParser.iniWrite(pathLauncherINI, "General", "SettingsPreset", settingsPreset.ToString());
-                FuncParser.iniWrite(pathLauncherINI, "General", "NumberStyle", numberStyle.ToString());
-                FuncParser.iniWrite(pathLauncherINI, "General", "Language", langTranslate);
-                FuncParser.iniWrite(pathLauncherINI, "Game", "MaxFPS", maxFPS.ToString());
                 FuncParser.iniWrite(pathLauncherINI, "ENB", "MemorySizeMb", memorySizeENB.ToString());
+                FuncParser.iniWrite(pathLauncherINI, "Game", "MaxFPS", maxFPS.ToString());
+                FuncParser.iniWrite(pathLauncherINI, "General", "AspectRatio", aspectRatio.ToString());
+                FuncParser.iniWrite(pathLauncherINI, "General", "Language", langTranslate);
+                FuncParser.iniWrite(pathLauncherINI, "General", "NumberStyle", numberStyle.ToString());
+                FuncParser.iniWrite(pathLauncherINI, "General", "SettingsPreset", settingsPreset.ToString());
                 if (Top >= 0 && Left >= 0)
                 {
-                    FuncParser.iniWrite(pathLauncherINI, "General", "POS_WindowTop", Top.ToString());
                     FuncParser.iniWrite(pathLauncherINI, "General", "POS_WindowLeft", Left.ToString());
+                    FuncParser.iniWrite(pathLauncherINI, "General", "POS_WindowTop", Top.ToString());
                 }
             }
             AppDomain.CurrentDomain.ProcessExit -= new EventHandler(closeControlPanel);
