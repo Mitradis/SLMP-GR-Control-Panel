@@ -137,7 +137,9 @@ namespace SLMPLauncher
                         break;
                     }
                 }
+                defaultList = null;
             }
+            pluginsList = null;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button_Uninstall_Click(object sender, EventArgs e)
